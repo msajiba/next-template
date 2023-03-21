@@ -1,16 +1,17 @@
+import { addToCart } from "@/redux/cartSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 const ProductShowRight = ({ product }) => {
   const dispatch = useDispatch();
-  const { name, price, category, img, quantity, ratings, stock } = product;
+
+  const {_id, name, price, category, img, quantity, ratings, stock } = product;
   const [orderQuantity, setOrderQuantity] = useState(quantity);
 
   const addToCartHandler = async () => {
-    const cartProduct = {name, price, category, img, orderQuantity, ratings} ;
-    console.log(cartProduct)
-
-
+    const cartProduct = { _id, name, price, category, img, orderQuantity,quantity, ratings };
+   dispatch(addToCart(product));
+    
   };
 
   return (
@@ -58,5 +59,3 @@ const ProductShowRight = ({ product }) => {
 };
 
 export default ProductShowRight;
-
-

@@ -1,10 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
+  const { cartItem } = useSelector((state) => state.cart);
+  const router = useRouter();
+  console.log(cartItem);
+
   const menu = (
     <>
       <li>
@@ -51,6 +55,18 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{menu}</ul>
       </div>
       <div className="navbar-end">
+        {
+          <li>
+            <button
+              onClick={() => router.push("/cart")}
+              className="btn gap-2 rounded-full btn-sm"
+            >
+              Cart
+              <div className="badge badge-secondary">{cartItem?.length}</div>
+            </button>
+          </li>
+        }
+
         {session ? (
           <button onClick={() => signOut()} className="btn btn-sm btn-error">
             SignOut
