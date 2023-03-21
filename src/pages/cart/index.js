@@ -1,3 +1,4 @@
+import CartRow from "@/components/cart/CartRow";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -6,6 +7,12 @@ const cart = () => {
   return (
     <div>
       <h3>total cart : {cartItem.length} </h3>
+      {
+        cartItem.map((cartItem, index) => {
+          <
+        })
+      }
+      <h3>cART</h3>
     </div>
   );
 };
